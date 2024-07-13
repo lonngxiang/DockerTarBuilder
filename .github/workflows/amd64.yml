@@ -18,6 +18,7 @@ jobs:
     - name: Clean up Docker to free space
       run: |
           df -h
+          du -sh /home/runner/work/DockerTarBuilder/DockerTarBuilder
           sudo ls -lht /var/lib/docker
           docker system prune -a -f
           docker volume prune -f
