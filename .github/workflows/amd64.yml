@@ -18,6 +18,7 @@ jobs:
     - name: Clean up Docker to free space
       run: |
           df -h
+          ls -lht /var/lib/docker
           docker system prune -a -f
           docker volume prune -f
 
@@ -31,7 +32,10 @@ jobs:
         done
 
     - name: Compress the TAR files
-      run: tar -czf x86-64-images.tar.gz *-amd64.tar
+      run: |
+          tar -czf x86-64-images.tar.gz *-amd64.tar
+          pwd
+          ls -lht /var/lib/docker
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
